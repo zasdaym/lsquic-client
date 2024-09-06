@@ -19,7 +19,7 @@ RUN cd /app && \
     sed -i 's/PROJECT(lsquic C)/PROJECT(lsquic C CXX)/' CMakeLists.txt && \
     mkdir build && \
     cd build && \
-    cmake -DBORINGSSL_DIR=/app/boringssl -DBORINGSSL_LIB_crypto=/app/boringssl/build/crypto/libcrypto.a -DBORINGSSL_LIB_ssl=/app/boringssl/build/crypto/libssl.a .. && \
+    cmake -DBORINGSSL_DIR=/app/boringssl -DBORINGSSL_LIB_crypto=/app/boringssl/build/crypto/libcrypto.a -DBORINGSSL_LIB_ssl=/app/boringssl/build/ssl/libssl.a .. && \
     make
 
 FROM ubuntu:24.04
