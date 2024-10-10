@@ -22,8 +22,9 @@ RUN cd /app && \
     mkdir build && \
     cd build && \
     cmake -DBORINGSSL_DIR=/app/boringssl -DBORINGSSL_LIB_crypto=/app/boringssl/build/crypto/libcrypto.a -DBORINGSSL_LIB_ssl=/app/boringssl/build/ssl/libssl.a .. && \
-    make http_client
+    make -j $(nproc) http_client http_server
 
 FROM ubuntu:24.04
 COPY --from=builder /app/lsquic/build/bin/http_client /usr/local/bin/http_client
+COPY --from=builder /app/lsquic/build/bin/http_server /usr/local/bin/http_server
 ENTRYPOINT [ "/usr/local/bin/http_client" ]
