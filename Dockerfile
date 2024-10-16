@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN git clone --depth=1 https://boringssl.googlesource.com/boringssl.git && \
     cd boringssl && \
     cmake -GNinja -B build -DCMAKE_BUILD_TYPE=Release && \
-    ninja -C build
+    ninja -j $(nproc) -C build
 
 RUN cd /app && \
     git clone --depth=1 --branch=v4.0.9 https://github.com/litespeedtech/lsquic.git && \
